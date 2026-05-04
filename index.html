@@ -4,71 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Title and Favicons -->
     <title>Rise at Seven | Award Winning Search-First Content Marketing Agency</title>
     <link rel="icon" type="image/png" sizes="228x228" href="/dist/favicons/coast-228x228.png">
-    <meta name="msapplication-TileColor" content="#fff">
-    <meta name="msapplication-TileImage" content="/dist/favicons/mstile-144x144.png">
-    <meta name="msapplication-config" content="/dist/favicons/browserconfig.xml">
-    <link rel="yandex-tableau-widget" href="/dist/favicons/yandex-browser-manifest.json">
 
     <!-- External Scripts & Fonts -->
     <script src="https://kit.fontawesome.com/711261502f.js" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration for your Custom Font -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        // Mapping your specific font stack
+                        'sans-primary': ['saans', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Loading Inter 600 for your backup -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
-    <!-- Styles -->
     <style>
+        /* 
+           If you have the Saans font file, it will load here. 
+           Otherwise, it falls back to Inter (600) automatically.
+        */
+        @font-face {
+            font-family: 'saans';
+            src: url('path/to/saans-semibold.woff2') format('woff2');
+            font-weight: 600;
+        }
+
         [x-cloak] { display: none; }
         body {
-            font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
         }
-        .fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
     </style>
-
-    <!-- Tracking Scripts (Google & Meta) -->
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments)};
-        gtag('js', new Date());
-        gtag('config', 'G-21W8T1C4M8', {'send_page_view': true,'anonymize_ip': false,'link_attribution': false,'allow_display_features': false});
-        gtag('config', 'AW-390915267', {'send_page_view': true});
-    </script>
-    <script>
-        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '2337836320038792');
-        fbq('track', 'PageView');
-    </script>
 </head>
-<body class="bg-neutral-900">
+<body class="bg-neutral-900 font-sans"> <!-- Added font-sans as default for body -->
 
     <!-- HERO SECTION -->
     <section id="hero-section" class="relative min-h-screen flex flex-col text-neutral-50 overflow-hidden">
         
-  <!-- Background Image -->
-<div class="absolute inset-0 z-0">
-    <div class="relative w-full h-full overflow-hidden">
-        <!-- The Tint Overlay -->
-        <div class="absolute inset-0 z-10" 
-             style="background-color: color-mix(in oklab, var(--color-grey-900) 30%, transparent);">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <div class="relative w-full h-full overflow-hidden">
+                <div class="absolute inset-0 z-10" style="background-color: rgba(23, 23, 23, 0.3);"></div>
+                <img src="https://rise-atseven.transforms.svdcdn.com/production/images/Emirates-airpline-in-flight.avif?w=1330&h=700&q=100&auto=format&fit=crop&dm=1750948034&s=7fc16049313aefb0ea160470af9ae379" 
+                     alt="Blurred airplane background" 
+                     class="w-full h-full object-cover blur-lg scale-110 brightness-[0.9] contrast-[1.1]"/>
+            </div>
         </div>
 
-        <!-- The Image -->
-        <img src="https://rise-atseven.transforms.svdcdn.com/production/images/Emirates-airpline-in-flight.avif?w=1330&h=700&q=100&auto=format&fit=crop&dm=1750948034&s=7fc16049313aefb0ea160470af9ae379" 
-             alt="Blurred airplane background" 
-             class="w-full h-full object-cover blur-lg scale-110 brightness-[0.70] contrast-[1.1]"/>
-    </div>
-</div>
         <!-- Announcement Bar -->
         <div class="relative z-20 w-full bg-neutral-100 text-neutral-900 py-2 px-4 text-center text-sm font-medium">
             <p class="flex items-center justify-center gap-2">
@@ -85,18 +79,12 @@
 
             <ul class="hidden md:flex items-center gap-8 text-sm font-medium">
                 <li><a href="#" class="hover:opacity-70 transition flex items-center gap-1">Services <span class="text-[10px]">+</span></a></li>
-                <li><a href="#" class="hover:opacity-70 transition flex items-center gap-1">International <span class="text-[10px]">+</span></a></li>
                 <li><a href="#" class="hover:opacity-70 transition flex items-center gap-1">About <span class="text-[10px]">+</span></a></li>
-                <li class="relative">
-                    <a href="#" class="hover:opacity-70 transition">Work</a>
-                    <span class="absolute -top-3 -right-4 bg-neutral-500 text-[10px] px-1 rounded-full text-white">25</span>
-                </li>
-                <li><a href="#" class="hover:opacity-70 transition">Careers</a></li>
+                <li><a href="#" class="hover:opacity-70 transition">Work</a></li>
                 <li><a href="#" class="hover:opacity-70 transition">Blog</a></li>
-                <li><a href="#" class="hover:opacity-70 transition">Webinar</a></li>
             </ul>
 
-            <button class="bg-neutral-50 text-neutral-900 px-6 py-2.5 rounded-full text-sm font-bold flex items-center gap-2 hover:bg-neutral-200 transition focus:ring-2 focus:ring-neutral-400 focus:outline-none">
+            <button class="bg-neutral-50 text-neutral-900 px-6 py-2.5 rounded-full text-sm font-bold hover:bg-neutral-200 transition">
                 Get In Touch <span class="text-xs">↗</span>
             </button>
         </nav>
@@ -105,62 +93,24 @@
         <div class="relative z-10 flex-grow flex flex-col items-center justify-center text-center px-6 pt-12 pb-24">
             <div class="mb-8 flex flex-col items-center gap-3">
                 <span class="text-[10px] font-bold tracking-widest uppercase text-neutral-300">#1 MOST RECOMMENDED CONTENT MARKETING AGENCY</span>
-                <div class="flex items-center gap-4 opacity-80">
-                    <div class="w-6 h-8 border-l border-r border-neutral-400 opacity-50"></div>
-                    <div class="flex gap-4">
-                        <div class="w-8 h-4 bg-neutral-400 rounded-sm"></div>
-                        <div class="w-8 h-4 bg-neutral-400 rounded-sm"></div>
-                        <div class="w-8 h-4 bg-neutral-400 rounded-sm"></div>
-                        <div class="w-8 h-4 bg-neutral-400 rounded-sm"></div>
-                    </div>
-                    <div class="w-6 h-8 border-l border-r border-neutral-400 opacity-50"></div>
-                </div>
             </div>
 
-            <h1 class="text-6xl md:text-8xl font-extrabold tracking-tight leading-[1.1] max-w-5xl">
-                We Create <br />
-                Category 
-                <span class="inline-block align-middle mx-2">
-                    <div class="w-20 h-14 md:w-28 md:h-20 bg-neutral-200 rounded-2xl overflow-hidden shadow-xl transform -rotate-2">
-                        <img src="https://rise-atseven.transforms.svdcdn.com/production/images/Emirates-airpline-in-flight.avif?w=1330&h=700&q=100&auto=format&fit=crop&dm=1750948034&s=7fc16049313aefb0ea160470af9ae379" alt="Category detail" class="w-full h-full object-cover" />
-                    </div>
-                </span>
-                Leaders
-            </h1>
+            <!-- THE UPDATED HEADING -->
+         <h1 class="font-sans-primary text-[80px] md:text-[120px] font-semibold tracking-tight leading-[0.9] max-w-7xl">
+    We Create <br />
+    Category 
+    <span class="inline-block align-middle mx-2">
+        <div class="w-20 h-14 md:w-32 md:h-24 bg-neutral-200 rounded-2xl overflow-hidden shadow-xl transform -rotate-2">
+            <img src="https://rise-atseven.transforms.svdcdn.com/production/images/Emirates-airpline-in-flight.avif?w=1330&h=700&q=100&auto=format&fit=crop&dm=1750948034&s=7fc16049313aefb0ea160470af9ae379" alt="Category detail" class="w-full h-full object-cover" />
+        </div>
+    </span>
+    Leaders
+</h1>
 
             <p class="mt-8 text-xl md:text-2xl font-medium text-neutral-200">
                 on every searchable platform
             </p>
-
-            <div class="mt-16 flex flex-wrap justify-center items-center gap-x-10 gap-y-6 max-w-4xl opacity-70">
-                <span class="text-lg font-bold">Google</span>
-                <div class="flex items-center gap-2"><div class="w-5 h-5 bg-neutral-400 rounded-full"></div> <span class="font-semibold">ChatGPT</span></div>
-                <span class="text-lg font-semibold tracking-tight italic">Gemini</span>
-                <div class="flex items-center gap-1"><div class="w-5 h-5 bg-neutral-400"></div> <span class="font-bold">TikTok</span></div>
-                <div class="flex items-center gap-1"><div class="w-6 h-4 bg-neutral-400 rounded-sm"></div> <span class="font-bold">YouTube</span></div>
-                <div class="flex items-center gap-1"><div class="w-5 h-5 bg-neutral-400 rounded-full"></div> <span class="font-bold">Pinterest</span></div>
-                <div class="flex items-center gap-1 font-black italic">GIPHY</div>
-                <div class="flex items-center gap-1"><div class="w-5 h-5 bg-neutral-400 rounded-full"></div> <span class="font-bold">reddit</span></div>
-                <span class="text-lg font-bold italic">amazon</span>
-            </div>
-        </div>
-
-        <!-- Section Footer -->
-        <div class="relative z-10 w-full max-w-7xl mx-auto px-6 pb-8 flex flex-col md:flex-row justify-between items-end gap-4 text-[10px] uppercase tracking-widest text-neutral-400 font-bold">
-            <div class="max-w-xs text-left">
-                Organic media planners creating, distributing & optimising search-first content for SEO, Social, PR, AI and UI Research.
-            </div>
-            <div class="text-right">
-                4 Global Offices serving UK, USA (New York) & EU
-            </div>
         </div>
     </section>
-
-    <script>
-        (() => {
-            const hero = document.getElementById('hero-section');
-            if (hero) console.log('Hero section initialized');
-        })();
-    </script>
 </body>
 </html>

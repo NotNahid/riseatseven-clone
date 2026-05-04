@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rise at Seven - Hero Section</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        /* Editable animation values */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+  <script data-arena-recording="true">(function(){
+"use strict";
+var SK="__arena_rec",RRWEB_CDN="https://cdn.jsdelivr.net/npm/rrweb@2.0.0-alpha.4/dist/rrweb.min.js";
+var MAX_RECORDING_MS=600000,MAX_RRWEB_EVENTS=30000,MAX_INTERACTIONS=5000,MAX_CURSOR_POINTS=10000,recStopped=false;
+var stored=null;try{var raw=sessionStorage.getItem(SK);if(raw)stored=JSON.parse(raw);}catch(ex){}
+var meta=stored?stored.m||null:null,rrwebEvents=stored?stored.r||[]:[],rrwebStarted=false,startTime=stored?stored.st||Date.now():Date.now();
+var interactions=stored?stored.i||[]:[],cursorPath=stored?stored.c||[]:[],lastCursorSample=0,lastScrollSample=0;
+var pageHeight=document.documentElement.scrollHeight;
+var viewport={width:window.innerWidth,height:window.innerHeight};
+function isCapped(){if(recStopped)return true;if(Date.now()-startTime>=MAX_RECORDING_MS){recStopped=true;return true;}return false;}
+function persist(){try{var d=JSON.stringify({r:rrwebEvents,i:interactions,c:cursorPath,m:meta,st:startTime});sessionStorage.setItem(SK,d);}catch(ex){rrwebEvents=rrwebEvents.slice(Math.floor(rrwebEvents.length/2));try{sessionStorage.setItem(SK,JSON.stringify({r:rrwebEvents,i:interactions,c:cursorPath,m:meta,st:startTime}));}catch(ex2){}}}
+setInterval(persist,5000);
+window.addEventListener("resize",function(){viewport={width:window.innerWidth,height:window.innerHeight};pageHeight=document.documentElement.scrollHeight;});
+document.addEventListener("click",function(e){if(isCapped()||interactions.length>=MAX_INTERACTIONS)return;var el=e.target;var tag=el.tagName?el.tagName.toLowerCase():"";var text=(el.textContent||"").trim().substring(0,80);var classes=el.className&&typeof el.className==="string"?el.className.substring(0,120):"";interactions.push({type:"click",t:Date.now()-startTime,x:Math.round(e.clientX),y:Math.round(e.clientY),element:{tag:tag,text:text,classes:classes}});},true);
+window.addEventListener("scroll",function(){if(isCapped()||interactions.length>=MAX_INTERACTIONS)return;var now=Date.now();if(now-lastScrollSample<200)return;lastScrollSample=now;var scrollY=Math.round(window.scrollY||window.pageYOffset||0);var depthPct=pageHeight>viewport.height?Math.min(100,Math.round(((scrollY+viewport.height)/pageHeight)*100)):100;interactions.push({type:"scroll",t:now-startTime,y:scrollY,depth_pct:depthPct});},{passive:true});
+document.addEventListener("mousemove",function(e){if(isCapped()||cursorPath.length>=MAX_CURSOR_POINTS)return;var now=Date.now();if(now-lastCursorSample<250)return;lastCursorSample=now;cursorPath.push([Math.round(e.clientX),Math.round(e.clientY),now-startTime]);},{passive:true});
+document.addEventListener("keydown",function(e){if(isCapped()||interactions.length>=MAX_INTERACTIONS)return;if(e.target&&(e.target.tagName==="INPUT"||e.target.tagName==="TEXTAREA"))return;interactions.push({type:"keydown",t:Date.now()-startTime,key:e.key});},true);
+function buildAnalytics(){if(!meta)return null;var ph=document.documentElement.scrollHeight;var maxScroll=0,clickElements={},firstClick=null,firstScroll=null,totalDistance=0;for(var i=0;i<interactions.length;i++){var ev=interactions[i];if(ev.type==="scroll"){if(ev.depth_pct>maxScroll)maxScroll=ev.depth_pct;if(!firstScroll)firstScroll=ev.t;}if(ev.type==="click"){if(!firstClick)firstClick=ev.t;var key=ev.element.tag+":"+ev.element.text.substring(0,30);clickElements[key]=true;}}for(var j=1;j<cursorPath.length;j++){var dx=cursorPath[j][0]-cursorPath[j-1][0];var dy=cursorPath[j][1]-cursorPath[j-1][1];totalDistance+=Math.sqrt(dx*dx+dy*dy);}var duration=Date.now()-startTime;var clickHeatmap=[];for(var k=0;k<interactions.length;k++){if(interactions[k].type==="click")clickHeatmap.push([interactions[k].x,interactions[k].y]);}return{generation_id:meta.generationId,tournament_id:meta.tournamentId,started_at:new Date(startTime).toISOString(),ended_at:new Date().toISOString(),duration_ms:duration,viewport:viewport,page_height:ph,interactions:interactions,cursor_path:cursorPath,click_heatmap:clickHeatmap,summary:{total_clicks:clickHeatmap.length,total_scrolls:interactions.filter(function(e){return e.type==="scroll";}).length,max_scroll_depth_pct:maxScroll,unique_elements_clicked:Object.keys(clickElements).length,time_to_first_click_ms:firstClick,time_to_first_scroll_ms:firstScroll,cursor_distance_px:Math.round(totalDistance),active_time_ms:duration}};}
+function loadRrweb(){if(rrwebStarted)return;rrwebStarted=true;var s=document.createElement("script");s.src=RRWEB_CDN;s.onload=function(){var rec=(window.rrweb&&window.rrweb.record)||window.rrwebRecord;if(!rec)return;rec({emit:function(event){if(rrwebEvents.length>=MAX_RRWEB_EVENTS||isCapped())return;rrwebEvents.push(event);}});};s.onerror=function(){};document.head.appendChild(s);}
+window.addEventListener("message",function(e){if(!e.data||typeof e.data.type!=="string")return;if(e.data.type==="arena:init"){if(!meta)startTime=Date.now();meta={generationId:e.data.generationId||e.data.modelId,tournamentId:e.data.tournamentId};persist();loadRrweb();if(e.source)e.source.postMessage({type:"arena:init-ack",generationId:meta.generationId},"*");}if(e.data.type==="arena:flush"){var resp={type:"arena:recording-data",generationId:meta?meta.generationId:null,rrwebEvents:rrwebEvents,analytics:buildAnalytics()};try{sessionStorage.removeItem(SK);}catch(ex){}if(e.source)e.source.postMessage(resp,"*");}});
+loadRrweb();
+})();</script>
+  <script data-arena-views="true">(function(){var isTop=false;try{isTop=window.self===window.top;}catch(e){}if(!isTop)return;window.__ARENA_META={generationId:"gemini-3-flash-preview",tournamentId:"64870b9e-b731-4f82-ade2-ab7c210c2c9b"};var payload={tournamentId:"64870b9e-b731-4f82-ade2-ab7c210c2c9b",modelId:"gemini-3-flash-preview"};try{var r=document.referrer;if(r){var u=new URL(r);payload.referrerDomain=u.hostname;}}catch(e){}try{var vid=null;try{vid=localStorage.getItem('arena_vid');}catch(e){}if(!vid){vid=typeof crypto!=="undefined"&&crypto.randomUUID?crypto.randomUUID():(Date.now().toString(36)+Math.random().toString(36).slice(2)).slice(0,32);try{localStorage.setItem('arena_vid',vid);}catch(e){}}if(vid)payload.viewerId=vid;}catch(e){}try{fetch("https://www.designarena.ai/api/agon/page-views",{"method":"POST","headers":{"Content-Type":"application/json"},"body":JSON.stringify(payload),"keepalive":true});}catch(e){}})();</script>
+</head>
+<body class="bg-neutral-900">
+
+    <!-- HERO SECTION -->
+    <section id="hero-section" class="relative min-h-screen flex flex-col text-neutral-50 overflow-hidden">
+        
+        <!-- Background Image Placeholder -->
+        <div class="absolute inset-0 z-0">
+            <div class="w-full h-full bg-neutral-800">
+                <!-- INSERT IMAGE: Blurry airplane background | Suggested size: 1920x1080 -->
+                <img src="" alt="Blurred airplane background" class="w-full h-full object-cover opacity-40" />
+            </div>
+        </div>
+
+        <!-- 1. Announcement Bar -->
+        <div class="relative z-20 w-full bg-neutral-100 text-neutral-900 py-2 px-4 text-center text-sm font-medium">
+            <p class="flex items-center justify-center gap-2">
+                <span class="inline-block w-4 h-4 bg-neutral-400 rounded-sm"></span>
+                Where are your customers actually searching? Download the report
+            </p>
+        </div>
+
+        <!-- 2. Navigation -->
+        <nav class="relative z-20 w-full max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="text-2xl font-bold tracking-tight">
+                Rise at Seven<span class="text-xs align-top">®</span>
+            </div>
+
+            <!-- Nav Links -->
+            <ul class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <li><a href="#" class="hover:opacity-70 transition flex items-center gap-1">Services <span class="text-[10px]">+</span></a></li>
+                <li><a href="#" class="hover:opacity-70 transition flex items-center gap-1">International <span class="text-[10px]">+</span></a></li>
+                <li><a href="#" class="hover:opacity-70 transition flex items-center gap-1">About <span class="text-[10px]">+</span></a></li>
+                <li class="relative">
+                    <a href="#" class="hover:opacity-70 transition">Work</a>
+                    <span class="absolute -top-3 -right-4 bg-neutral-500 text-[10px] px-1 rounded-full text-white">25</span>
+                </li>
+                <li><a href="#" class="hover:opacity-70 transition">Careers</a></li>
+                <li><a href="#" class="hover:opacity-70 transition">Blog</a></li>
+                <li><a href="#" class="hover:opacity-70 transition">Webinar</a></li>
+            </ul>
+
+            <!-- CTA -->
+            <button class="bg-neutral-50 text-neutral-900 px-6 py-2.5 rounded-full text-sm font-bold flex items-center gap-2 hover:bg-neutral-200 transition focus:ring-2 focus:ring-neutral-400 focus:outline-none">
+                Get In Touch <span class="text-xs">↗</span>
+            </button>
+        </nav>
+
+        <!-- 3. Main Content -->
+        <div class="relative z-10 flex-grow flex flex-col items-center justify-center text-center px-6 pt-12 pb-24">
+            
+            <!-- Awards/Social Proof -->
+            <div class="mb-8 flex flex-col items-center gap-3">
+                <span class="text-[10px] font-bold tracking-widest uppercase text-neutral-300">#1 MOST RECOMMENDED CONTENT MARKETING AGENCY</span>
+                <div class="flex items-center gap-4 opacity-80">
+                    <!-- Award Placeholders -->
+                    <div class="w-6 h-8 border-l border-r border-neutral-400 opacity-50"></div>
+                    <div class="flex gap-4">
+                        <div class="w-8 h-4 bg-neutral-400 rounded-sm"></div>
+                        <div class="w-8 h-4 bg-neutral-400 rounded-sm"></div>
+                        <div class="w-8 h-4 bg-neutral-400 rounded-sm"></div>
+                        <div class="w-8 h-4 bg-neutral-400 rounded-sm"></div>
+                    </div>
+                    <div class="w-6 h-8 border-l border-r border-neutral-400 opacity-50"></div>
+                </div>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="text-6xl md:text-8xl font-extrabold tracking-tight leading-[1.1] max-w-5xl">
+                We Create <br />
+                Category 
+                <span class="inline-block align-middle mx-2">
+                    <div class="w-20 h-14 md:w-28 md:h-20 bg-neutral-200 rounded-2xl overflow-hidden shadow-xl transform -rotate-2">
+                        <!-- INSERT IMAGE: Emirates tail / plane detail | Suggested size: 200x150 -->
+                        <img src="" alt="Category detail" class="w-full h-full object-cover opacity-0" />
+                    </div>
+                </span>
+                Leaders
+            </h1>
+
+            <!-- Subheadline -->
+            <p class="mt-8 text-xl md:text-2xl font-medium text-neutral-200">
+                on every searchable platform
+            </p>
+
+            <!-- Platform Logos -->
+            <div class="mt-16 flex flex-wrap justify-center items-center gap-x-10 gap-y-6 max-w-4xl opacity-70">
+                <span class="text-lg font-bold">Google</span>
+                <div class="flex items-center gap-2"><div class="w-5 h-5 bg-neutral-400 rounded-full"></div> <span class="font-semibold">ChatGPT</span></div>
+                <span class="text-lg font-semibold tracking-tight italic">Gemini</span>
+                <div class="flex items-center gap-1"><div class="w-5 h-5 bg-neutral-400"></div> <span class="font-bold">TikTok</span></div>
+                <div class="flex items-center gap-1"><div class="w-6 h-4 bg-neutral-400 rounded-sm"></div> <span class="font-bold">YouTube</span></div>
+                <div class="flex items-center gap-1"><div class="w-5 h-5 bg-neutral-400 rounded-full"></div> <span class="font-bold">Pinterest</span></div>
+                <div class="flex items-center gap-1 font-black italic">GIPHY</div>
+                <div class="flex items-center gap-1"><div class="w-5 h-5 bg-neutral-400 rounded-full"></div> <span class="font-bold">reddit</span></div>
+                <span class="text-lg font-bold italic">amazon</span>
+            </div>
+        </div>
+
+        <!-- 4. Section Footer Info -->
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-6 pb-8 flex flex-col md:flex-row justify-between items-end gap-4 text-[10px] uppercase tracking-widest text-neutral-400 font-bold">
+            <div class="max-w-xs text-left">
+                Organic media planners creating, distributing & optimising search-first content for SEO, Social, PR, AI and UI Research.
+            </div>
+            <div class="text-right">
+                4 Global Offices serving UK, USA (New York) & EU
+            </div>
+        </div>
+
+    </section>
+
+    <script>
+        (() => {
+            // Hero section specific logic
+            const hero = document.getElementById('hero-section');
+            if (hero) {
+                console.log('Hero section initialized');
+            }
+        })();
+    </script>
+</body>
+</html>

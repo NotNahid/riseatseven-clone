@@ -48,20 +48,26 @@
         }
     </style>
 </head>
-<body class="bg-neutral-900 font-sans"> <!-- Added font-sans as default for body -->
+<body class="bg-[#EFEEEC] font-sans"> <!-- Added font-sans as default for body -->
 
     <!-- HERO SECTION -->
     <section id="hero-section" class="relative min-h-screen flex flex-col text-neutral-50 overflow-hidden">
         
         <!-- Background Image -->
-        <div class="absolute inset-0 z-0">
-            <div class="relative w-full h-full overflow-hidden">
-                <div class="absolute inset-0 z-10" style="background-color: rgba(23, 23, 23, 0.3);"></div>
-                <img src="https://rise-atseven.transforms.svdcdn.com/production/images/Emirates-airpline-in-flight.avif?w=1330&h=700&q=100&auto=format&fit=crop&dm=1750948034&s=7fc16049313aefb0ea160470af9ae379" 
-                     alt="Blurred airplane background" 
-                     class="w-full h-full object-cover blur-lg scale-110 brightness-[0.9] contrast-[1.1]"/>
-            </div>
-        </div>
+<div class="absolute inset-0 z-0 p-6">
+    <div class="relative w-full h-full overflow-hidden rounded-3xl">
+        
+        <!-- dark overlay -->
+        <div class="absolute inset-0 z-10 bg-neutral-900/30"></div>
+
+        <!-- image -->
+        <img 
+            src="https://rise-atseven.transforms.svdcdn.com/production/images/Emirates-airpline-in-flight.avif?w=1330&h=700&q=100&auto=format&fit=crop&dm=1750948034&s=7fc16049313aefb0ea160470af9ae379" 
+            alt="Background image"
+            class="w-full h-full object-cover blur-lg scale-110 brightness-[0.9] contrast-[1.1]"
+        />
+    </div>
+</div>
 
         <!-- Announcement Bar -->
         <div class="relative z-20 w-full bg-neutral-100 text-neutral-900 py-2 px-4 text-center text-sm font-medium">

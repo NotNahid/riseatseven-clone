@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rise at Seven - Modular Components</title>
+
+  <!-- ========================================= -->
+<!-- 🌍 GLOBAL STYLES (Resets & Typography only)-->
+<!-- ========================================= -->
+<script>
+const images = [
+  "https://raw.githubusercontent.com/NotNahid/riseatseven-clone/refs/heads/main/Image/Emirates-airpline-in-flight.avif",
+  "https://raw.githubusercontent.com/NotNahid/riseatseven-clone/refs/heads/main/Image/Screenshot-2025-07-01-at-21.36.35.png",
+  "https://raw.githubusercontent.com/NotNahid/riseatseven-clone/refs/heads/main/Image/unnamed-6.png",
+  "https://raw.githubusercontent.com/NotNahid/riseatseven-clone/refs/heads/main/Image/RedBull-Instagram-Post-45.png",
+  "https://raw.githubusercontent.com/NotNahid/riseatseven-clone/refs/heads/main/Image/spaseekers.png"
+];
+
+function setHeroImage() {
+  const img = images[Math.floor(Math.random() * images.length)];
+
+  document.getElementById("hero-bg").src = img;
+  document.getElementById("hero-inline").src = img;
+}
+
+document.addEventListener("DOMContentLoaded", setHeroImage);
+</script>
+
+<style>
+@font-face {
+    font-family: "Saans Medium";
+    src: url("https://raw.githubusercontent.com/NotNahid/riseatseven-clone/main/Fonts/Saans-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Saans Trial";
+    src: url("https://raw.githubusercontent.com/NotNahid/riseatseven-clone/main/Fonts/Saans-TRIAL-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+@font-face {
+    font-family: "Saans";
+    src: url("https://raw.githubusercontent.com/NotNahid/riseatseven-clone/main/Fonts/Saans-TRIAL-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Use Saans Medium globally */
+body {
+    font-family: "Saans Medium", Helvetica, Arial, sans-serif;
+    background-color: #f2f2f2;
+    color: #111;
+    overflow-x: hidden;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.global-btn-pill {
+    background-color: white;
+    color: #111;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.global-btn-pill:hover {
+    transform: scale(1.05);
+}
+</style>
+
+</head>
+<body>
+    
+    
+    
+<style>
+#comp-top-banner {
+    font-family: "Saans Medium", sans-serif;
+    font-weight: 600 !important;
+    background-color: #b2f6e3;
+    text-align: center;
+    padding: 8px 20px;
+    font-size: 14px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: 999px;
+
+    width: 99%;
+    margin: 8px auto;   /* 👈 this recenters it */
+
+    box-sizing: border-box;
+}
+</style>
+
+<div id="comp-top-banner">
+    🚨 The Category Leaderboard - Live Now
+</div>
+
+
+
+<!-- ========================================= -->
+<!-- 🧱 COMPONENT: NAVIGATION BAR              -->
+<!-- ========================================= -->
+<section id="section-header" style="position: relative;">
+    <style>
+        #comp-header {
+            position: absolute; top: 4px; width: 100%; padding: 10px 29px;
+            display: flex; justify-content: space-between; align-items: center; z-index: 100; color: white;
+        }
+        #comp-header nav ul { display: flex; list-style: none; gap: 30px; font-size: 16px; font-weight: 500; }
+        #comp-header nav ul li { cursor: pointer; }
+        #comp-header .badge { background: #b2f6e3; color: #111; border-radius: 50%; padding: 2px 6px; font-size: 10px; vertical-align: top; margin-left: -4px; }
+    </style>
+    <header id="comp-header">
+
+        <!-- LOGO -->
+        <div class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 21" fill="currentColor" style="height:21px; width:auto; display:block;">
+                <path d="M91.3152 5.40061C91.3152 3.94241 92.5306 2.67359 93.9881 2.67359C95.7162 2.67359 96.797 3.83419 96.797 5.56225H99.7127C99.7127 2.1873 97.3096 0 93.9874 0C90.9371 0 88.3988 2.32257 88.3988 5.42766C88.3988 9.31596 90.883 10.2344 93.9874 11.4221C95.6627 12.07 97.2007 12.5563 97.2007 14.6895C97.2007 16.634 95.9867 18.0651 93.9874 18.0651C91.8813 18.0651 90.7477 16.3905 90.7477 14.446H87.832C87.832 18.0651 90.3426 20.7381 93.9874 20.7381C97.6323 20.7381 100.118 18.2816 100.118 14.6895C100.118 7.10161 91.3145 9.64061 91.3145 5.40061H91.3152Z"></path>
+  <path d="M109.209 4.99609C104.834 4.99609 101.539 8.53405 101.539 12.8539C101.539 17.1737 104.888 20.738 109.155 20.738C112.422 20.738 115.203 18.713 116.337 15.662H113.529C112.718 17.2278 111.017 18.1733 109.262 18.1733C106.806 18.1733 104.915 16.4182 104.348 14.0963H116.743C116.797 13.6371 116.823 13.1508 116.823 12.6922C116.823 8.47926 113.447 4.99609 109.209 4.99609ZM104.348 11.9361C104.509 9.47823 106.751 7.56147 109.181 7.56147C111.611 7.56147 113.853 9.47823 114.014 11.9361H104.348Z"></path>
+  <path d="M127.476 5.40039L123.575 16.0941L119.673 5.40039H116.676L122.617 20.3598H124.588L130.475 5.40039H127.476Z"></path>
+  <path d="M137.942 4.99609C133.567 4.99609 130.273 8.53405 130.273 12.8539C130.273 17.1737 133.621 20.738 137.888 20.738C141.155 20.738 143.936 18.713 145.071 15.662H142.262C141.453 17.2278 139.75 18.1733 137.996 18.1733C135.538 18.1733 133.649 16.4182 133.081 14.0963H145.476C145.53 13.6371 145.556 13.1508 145.556 12.6922C145.556 8.47926 142.182 4.99609 137.942 4.99609ZM133.081 11.9361C133.243 9.47823 135.484 7.56147 137.915 7.56147C140.347 7.56147 142.586 9.47823 142.749 11.9361H133.081Z"></path>
+  <path d="M147.473 8.21195V8.69013V20.3618H150.032V10.1815L167.216 20.3618V17.2405L147.473 5.40039V8.21195Z"></path>
+  <path d="M67.8431 7.50804H67.789C66.6818 5.80635 64.7103 4.99609 62.713 4.99609C58.1775 4.99609 54.7734 8.3981 54.7734 12.935C54.7734 17.4719 58.2296 20.7387 62.713 20.7387C64.7651 20.7387 66.7359 19.8473 67.789 18.0387H67.8431V20.3606H70.652V5.40122H67.8431V7.50804ZM62.686 18.1733C59.823 18.1733 57.5823 15.7168 57.5823 12.9073C57.5823 10.0978 59.7425 7.56079 62.7124 7.56079C65.6822 7.56079 67.8972 9.90973 67.8972 12.9073C67.8972 15.9048 65.6024 18.1733 62.6867 18.1733H62.686Z"></path>
+  <path d="M77.5832 0.378906H74.7736V5.40144H72.75V7.96681H74.7736V20.3608H77.5832V7.96681H80.0403V5.40144H77.5832V0.378906Z"></path>
+  <path d="M18.3089 0.378906H15.5V3.2953H18.3089V0.378906Z"></path>
+  <path d="M18.3089 5.02344H15.5V19.9828H18.3089V5.02344Z"></path>
+  <path d="M25.8409 10.7205C24.8142 10.3959 23.5183 10.0996 23.5183 8.77603C23.5183 7.77639 24.3279 7.18256 25.2728 7.18256C26.4077 7.18256 27.0549 7.91166 27.1895 8.99178H29.9984C29.9443 6.39935 27.9727 4.61719 25.4087 4.61719C22.8447 4.61719 20.7088 6.3723 20.7088 8.93767C20.7088 14.2307 27.5412 12.6102 27.5412 15.743C27.5412 17.0389 26.6227 17.7951 25.381 17.7951C23.707 17.7951 22.9516 16.6074 22.8427 15.0681H20.0352C20.0352 17.417 21.1951 19.2269 23.4094 20.0094C24.0303 20.2252 24.6789 20.3604 25.3262 20.3604C28.1892 20.3604 30.3494 18.5248 30.3494 15.5807C30.3494 12.6366 28.296 11.476 25.8402 10.7205H25.8409Z"></path>
+  <path d="M39.3637 4.61719C34.9891 4.61719 31.6953 8.15514 31.6953 12.475C31.6953 16.7948 35.0432 20.3591 39.3096 20.3591C42.577 20.3591 45.3581 18.3341 46.493 15.2831H43.6842C42.8746 16.8489 41.1722 17.7944 39.4178 17.7944C36.96 17.7944 35.0709 16.0393 34.5028 13.7174H46.8975C46.9516 13.2582 46.978 12.7719 46.978 12.3133C46.978 8.10036 43.6037 4.61719 39.3637 4.61719ZM34.5028 11.5565C34.6651 9.09864 36.9059 7.18188 39.3373 7.18188C41.7688 7.18188 44.0075 9.09932 44.1705 11.5565H34.5028Z"></path>
+  <path d="M9.55945 12.1512C12.1519 11.2327 13.3395 9.09953 13.3395 6.39957C13.3395 4.67151 12.7728 2.88934 11.5046 1.67395C10.0998 0.297591 8.07419 0 6.18314 0H0V19.9826H2.91572V13.8069L13.3389 19.9826V16.8606L6.22575 12.5949L7.61496 12.5293C8.26222 12.5293 8.96359 12.3676 9.55809 12.1512H9.55945ZM4.91499 10.3156H2.91572V2.67359H5.99444C8.317 2.67359 10.4231 3.86192 10.4231 6.40024C10.4231 9.5865 7.50742 10.3156 4.91499 10.3156Z"></path>
+  <path d="M164.759 7.94414L166.061 8.71517V8.08955L165.395 7.69051C165.437 7.68172 165.48 7.66954 165.521 7.65466C165.869 7.53157 166.061 7.24209 166.061 6.84034C166.061 6.57725 165.966 6.33579 165.801 6.17753C165.583 5.9638 165.277 5.93945 165.065 5.93945H164.191V8.63807H164.758V7.94346L164.759 7.94414ZM164.908 7.22856H164.76V6.47715H165.043C165.261 6.47715 165.495 6.57251 165.495 6.84102C165.495 7.10953 165.297 7.22856 164.908 7.22856H164.908Z"></path>
+  <path d="M165.127 10.1622C166.714 10.1622 168 8.87583 168 7.28913C168 5.70242 166.714 4.41602 165.127 4.41602C163.54 4.41602 162.254 5.70242 162.254 7.28913C162.254 8.87583 163.54 10.1622 165.127 10.1622ZM165.127 5.22763C166.264 5.22763 167.189 6.15219 167.189 7.28913C167.189 8.42606 166.264 9.35062 165.127 9.35062C163.99 9.35062 163.066 8.42606 163.066 7.28913C163.066 6.15219 163.99 5.22763 165.127 5.22763Z"></path>
+                
+                <!-- paste remaining paths here -->
+            </svg>
+        </div>
+
+        <!-- NAV -->
+        <nav>
+            <ul>
+                <li>Services +</li><li>Industries +</li><li>International +</li><li>About +</li>
+                <li>Work <span class="badge">25</span></li>
+                <li>Careers</li><li>Blog</li><li>Webinar</li>
+            </ul>
+        </nav>
+
+        <!-- CTA BUTTON -->
+        <button style="
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 26px;
+            background: white;
+            color: #111827;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: border-radius 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        "
+        onmouseover="this.style.borderRadius='12px'; this.querySelector('.wrap').style.transform='translateY(-20px)';"
+        onmouseout="this.style.borderRadius='30px'; this.querySelector('.wrap').style.transform='translateY(0px)';"
+        >
+            <span style="display: inline-flex; overflow: hidden; height: 20px;">
+                <span class="wrap" style="
+                    display: flex;
+                    flex-direction: column;
+                    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                ">
+                    <span style="display: flex; align-items: center; gap: 8px; height: 20px;">
+                        Get In Touch
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;">
+                            <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+                        </svg>
+                    </span>
+                    <span style="display: flex; align-items: center; gap: 8px; height: 20px;">
+                        Get In Touch
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;">
+                            <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+                        </svg>
+                    </span>
+                </span>
+            </span>
+        </button>
+
+    </header>
+</section>
+
+
+
+
+    <!-- 🧱 COMPONENT: HERO SECTION -->
+<!-- ========================================= -->
+<style>
+#comp-hero {
+    min-height: 100vh;
+    position: relative;
+    color: white;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+
+/* 🎛️ HERO BACKGROUND CONTROL SYSTEM */
+#comp-hero {
+    --bg-top: 1px;
+    --bg-bottom: 10px;
+    --bg-left: 8px;
+    --bg-right: 6px;
+
+    --bg-radius: 23px;
+
+    --bg-scale: 1.1;
+    --bg-blur: 10px;
+    --bg-brightness: 0.7;
+    --bg-contrast: 1.2;
+
+    --overlay-opacity: 0.3;
+}
+
+/* BACKGROUND WRAPPER */
+#comp-hero .bg-wrap {
+    position: absolute;
+    top: var(--bg-top);
+    bottom: var(--bg-bottom);
+    left: var(--bg-left);
+    right: var(--bg-right);
+    z-index: 0;
+}
+
+/* INNER BOX */
+#comp-hero .bg-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--bg-radius);
+    overflow: hidden;
+    position: relative;
+}
+
+/* IMAGE */
+#comp-hero .bg-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(var(--bg-scale));
+    filter: blur(var(--bg-blur)) 
+            brightness(var(--bg-brightness)) 
+            contrast(var(--bg-contrast));
+}
+
+/* OVERLAY */
+#comp-hero .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,var(--overlay-opacity));
+}
+
+
+/* MAIN CONTENT */
+#comp-hero .content {
+    position: relative;
+    z-index: 1;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 20px 120px;
+}
+
+/* AWARDS BADGE ROW */
+#comp-hero .awards-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+#comp-hero .awards-badges {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    opacity: 0.75;
+}
+
+#comp-hero .awards-divider {
+    width: 6px;
+    height: 32px;
+    border-left: 1px solid rgba(200,200,200,0.45);
+    border-right: 1px solid rgba(200,200,200,0.45);
+}
+
+#comp-hero .awards-chips {
+    display: flex;
+    gap: 10px;
+}
+
+#comp-hero .awards-chip {
+    width: 32px;
+    height: 16px;
+    background: rgba(200,200,200,0.35);
+    border-radius: 4px;
+}
+
+/* HEADING */
+#comp-hero h1 {
+    font-size: clamp(48px, 8vw, 120px);
+    line-height: 0.9;
+    font-weight: 600;
+    letter-spacing: -2px;
+}
+
+/* INLINE IMAGE */
+#comp-hero .inline-img {
+    display: inline-block;
+    width: 108px;
+    height: 108px;
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 0 1px;
+    vertical-align: middle;
+    
+    position: relative;
+    top: -16px;
+}
+
+#comp-hero .inline-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* SUBTEXT */
+#comp-hero p {
+    font-size: 20px;
+    margin-top: 30px;
+    color: rgba(255,255,255,0.85);
+}
+
+/* OPTIONAL: PLATFORM ROW */
+#comp-hero .platforms {
+    margin-top: 40px;
+    display: flex;
+    gap: 24px;
+    font-size: 16px;
+    opacity: 0.8;
+}
+</style>
+
+<section id="comp-hero">
+
+    <!-- BACKGROUND -->
+    <div class="bg-wrap">
+        <div class="bg-inner">
+            <div class="overlay"></div>
+            <img id="hero-bg" src="" />
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+     
+     
+
+     
+     
+     <!-- AWARDS LABEL -->
+
+<style>
+.awards-label {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.3px;
+    max-width: 260px;
+    text-align: center;
+    margin-bottom: 8px;
+    color: #fff;
+
+    /* ✅ correct font stack */
+    font-family: "Saans", ui-sans-serif, system-ui, sans-serif;
+}
+</style>
+     
+     
+  <!-- AWARDS BADGE ROW -->
+
+<style>
+.awards-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+
+.awards-badges {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* icons */
+.awards-badges svg {
+    width: px;
+    height: auto;
+    fill: currentColor;
+}
+
+/* base image style */
+.awards-badges img {
+    
+    height: 20px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* 👇 individual image control (your requirement) */
+.awards-badges .img-1 { height: 24px; }
+.awards-badges .img-2 { height: 24px; }
+.awards-badges .img-3 { height: 12px; }
+.awards-badges .img-4 { height: 13px; }
+
+</style>
+
+<div class="awards-row">
+
+    <span class="awards-label">
+        #1 MOST RECOMMENDED <br>CONTENT MARKETING AGENCY
+    </span>
+
+    <div class="awards-badges">
+
+        <!-- LEFT ICON -->
+        <svg viewBox="0 0 28 38" width="30">
+            <path d="M25.826 36.2423C24.1628 35.2302 22.3284 34.9354 20.4357 34.7259C19.6852 34.6204 18.9236 34.4691 18.193 34.2705C17.3545 34.0474 16.5347 33.7576 15.7419 33.4062L16.4438 31.9431C17.2169 30.332 16.5375 28.3991 14.9263 27.6261L14.0759 29.3985C13.5361 30.5234 13.7046 31.805 14.4037 32.7394C13.3196 32.1373 12.3026 31.4146 11.3802 30.5845L12.6328 29.1752C13.8199 27.8396 13.6998 25.7945 12.364 24.6072L11.0579 26.0765C10.0602 27.199 9.98609 28.8225 10.7806 30.0168C10.6575 29.8939 10.5358 29.7692 10.4166 29.6422C9.49052 28.6654 8.6932 27.5814 8.02681 26.4223L9.41226 25.5441C10.9217 24.5875 11.3698 22.5885 10.4131 21.0791L8.75281 22.1315C7.7684 22.7554 7.23555 23.8229 7.24942 24.9087C6.7712 23.8595 6.39118 22.7641 6.11088 21.6429L7.61991 21.1998C9.33444 20.6962 10.3162 18.8982 9.81266 17.1835L7.92644 17.7374C6.85358 18.0523 6.06774 18.8744 5.75319 19.8655C5.57825 18.727 5.50281 17.5732 5.52904 16.4239L7.2633 16.4128C9.05024 16.4013 10.4897 14.9435 10.4782 13.1565L8.5124 13.1691C7.23035 13.1773 6.12736 13.93 5.61055 15.0146C5.73 13.7312 5.98818 12.4645 6.37211 11.2376L8.06062 11.7101C9.78144 12.1916 11.5669 11.1871 12.0486 9.46623L10.1554 8.93641C8.90673 8.58696 7.62424 9.02009 6.83038 9.94142C7.30904 8.72939 7.91213 7.56635 8.62664 6.47593L10.1355 7.40528C11.6568 8.34265 13.6501 7.86898 14.5873 6.3476L12.9135 5.31658C11.788 4.62331 10.4045 4.70222 9.38126 5.40589C9.87033 4.76053 10.4008 4.14639 10.9692 3.56888C11.3054 3.84679 11.7648 3.98423 12.2801 3.86023C12.6898 3.7616 13.1 3.57083 13.4724 3.24067C15.26 1.65751 15.26 0.0708753 15.26 0.0708753C13.0683 -0.225683 11.698 0.452629 10.855 1.28334C10.1931 1.93542 10.3013 2.86694 10.8194 3.42667C10.0988 4.13143 9.44456 4.88605 8.85752 5.68142C9.29 4.30204 8.75303 2.75334 7.46577 1.96057L5.792 0.929551C4.85463 2.45093 5.3283 4.44425 6.84968 5.3814L8.39642 6.33437C7.60321 7.51085 6.94961 8.76602 6.43887 10.0721C6.32463 8.76906 5.42108 7.61187 4.087 7.23857L2.19384 6.70876C1.71237 8.42958 2.71694 10.215 4.43776 10.6967L6.05409 11.1491C5.63353 12.4429 5.34824 13.7772 5.2004 15.1264C4.69182 13.9916 3.54916 13.2042 2.22571 13.2127L0.259922 13.2252C0.271412 15.0122 1.72927 16.4516 3.51621 16.4401L5.10068 16.4299C5.03933 17.8386 5.12691 19.2542 5.36667 20.6479C4.57671 19.6171 3.20665 19.1237 1.88601 19.5115L0 20.0652C0.503586 21.7797 2.30158 22.7615 4.01633 22.2579L5.59928 21.7931C5.90776 23.1092 6.35563 24.398 6.94419 25.6345C5.91621 24.9679 4.55222 24.917 3.44966 25.6157L1.78932 26.6681C2.74598 28.1776 4.74494 28.6257 6.25439 27.669L7.56983 26.8353C8.22039 27.9801 9.00038 29.0699 9.91151 30.0823C8.7617 29.767 7.48073 30.1015 6.63528 31.053L5.32916 32.5224C6.66476 33.7095 8.70989 33.5894 9.89721 32.2535L10.9189 31.1042C11.9553 32.0671 13.113 32.8948 14.3532 33.5737C13.0642 33.4781 11.7889 34.1658 11.196 35.4014L10.3455 37.1739C11.9566 37.9469 13.8895 37.2675 14.6625 35.6564L15.4065 34.1057C16.8386 34.7702 18.36 35.2451 19.9167 35.5122C20.2867 35.5738 20.73 35.6432 21.0908 35.6865C23.2018 35.9542 24.9211 36.55 26.5574 37.9224L27.162 37.1667C26.7397 36.8346 26.2964 36.5207 25.8264 36.2426L25.826 36.2423Z" fill="currentColor"/>
+        </svg>
+
+        <!-- LOGOS -->
+        <img class="img-1"
+            src="https://raw.githubusercontent.com/NotNahid/riseatseven-clone/refs/heads/main/Image/global-search-awards.png" alt="">
+
+        <img class="img-2"
+            src="https://github.com/NotNahid/riseatseven-clone/blob/main/Image/Mask-group.png?raw=true" alt="">
+
+        <img class="img-3"
+            src="https://github.com/NotNahid/riseatseven-clone/blob/main/Image/UKSocial-Media-Awards-White.png?raw=true" alt="">
+
+        <img class="img-4"
+            src="https://github.com/NotNahid/riseatseven-clone/blob/main/Image/UK-Content-Awards-White.png?raw=true" alt="">
+
+        <!-- RIGHT ICON -->
+        <svg viewBox="0 0 28 38" width="30">
+            <path d="M26.1158 19.5111C24.7952 19.1232 23.4251 19.6166 22.6352 20.6472C22.8747 19.2535 22.9627 17.8379 22.9011 16.4293L24.4854 16.4395C26.2723 16.451 27.7302 15.0115 27.7417 13.2246L25.7759 13.212C24.4527 13.2036 23.31 13.9907 22.8014 15.1256C22.6536 13.7763 22.3683 12.4422 21.9477 11.1485L23.5641 10.6963C25.2849 10.2148 26.2897 8.42914 25.808 6.70832L23.9148 7.23814C22.5807 7.61144 21.6772 8.76862 21.563 10.0717C21.0522 8.76559 20.3988 7.51042 19.6054 6.33416L21.1524 5.38118C22.6737 4.44381 23.1474 2.45071 22.21 0.929334L20.5363 1.96035C19.249 2.75334 18.712 4.30204 19.1447 5.68164C18.5577 4.88627 17.9034 4.13143 17.1826 3.42667C17.701 2.86715 17.8091 1.93542 17.1473 1.28334C16.304 0.452629 14.9337 -0.225683 12.7423 0.0708753C12.7423 0.0708753 12.7423 1.65751 14.5294 3.24067C14.9021 3.57083 15.312 3.7616 15.7217 3.86023C16.236 3.98402 16.6942 3.84723 17.0302 3.57083C17.5991 4.14834 18.1306 4.76183 18.621 5.40611C17.5976 4.70222 16.2138 4.62309 15.0883 5.31658L13.4145 6.3476C14.3519 7.86898 16.345 8.34265 17.8664 7.40528L19.3773 6.47441C19.4378 6.56633 19.4977 6.6589 19.5564 6.7519C20.2139 7.76709 20.7591 8.8458 21.1931 9.96678C20.401 9.0279 19.1064 8.58371 17.8464 8.93641L15.9533 9.46623C16.4347 11.187 18.2204 12.1918 19.9412 11.7101L21.6321 11.2369C22.0045 12.4557 22.2521 13.713 22.3759 14.9829C21.8528 13.9153 20.7589 13.1771 19.4894 13.1689L17.5236 13.1563C17.5122 14.9432 18.9516 16.4011 20.7385 16.4126L22.4635 16.4236C22.491 17.5726 22.4186 18.7241 22.2469 19.8597C21.931 18.8711 21.1461 18.0517 20.0754 17.7374L18.1892 17.1835C17.6856 18.898 18.6674 20.6962 20.3819 21.1998L21.8916 21.6431C21.6124 22.7678 21.2324 23.866 20.7522 24.9185C20.7693 23.8294 20.2362 22.7574 19.2488 22.1317L17.5885 21.0793C16.6318 22.5887 17.0799 24.5877 18.5893 25.5443L19.9778 26.4245C19.3121 27.5804 18.5143 28.6628 17.585 29.6426C17.4645 29.7716 17.342 29.8982 17.2173 30.0228C18.0157 28.8279 17.9429 27.2012 16.9435 26.077L15.6374 24.6076C14.3018 25.7947 14.1815 27.8401 15.3686 29.1757L16.6227 30.5865C15.7009 31.4168 14.684 32.1363 13.6001 32.7365C14.2973 31.8024 14.4648 30.5225 13.9255 29.3989L13.075 27.6265C11.4639 28.3996 10.7845 30.3324 11.5576 31.9435L12.2582 33.4038C10.8847 34.0125 9.42985 34.4402 7.94359 34.6704C7.57181 34.7259 7.17748 34.7808 6.79789 34.8215C4.50564 35.0815 2.65757 35.6999 0.839844 37.1671L1.44445 37.9228C1.83574 37.6055 2.23982 37.3104 2.66212 37.0518C3.94872 36.2469 5.39553 35.8909 6.91084 35.6867C8.89049 35.4606 10.8129 34.9293 12.5949 34.1053L13.3393 35.6568C14.1124 37.2679 16.0452 37.9473 17.6563 37.1743L16.8059 35.4019C16.2132 34.1666 14.9387 33.479 13.6502 33.574C14.886 32.8987 16.0406 32.074 17.0831 31.1046L18.1048 32.254C19.2919 33.5896 21.3373 33.7099 22.6729 32.5228L21.3668 31.0534C20.5211 30.102 19.2401 29.7675 18.0905 30.0827C19.0017 29.0701 19.7814 27.9805 20.432 26.8357L21.7474 27.6695C23.2569 28.6261 25.2558 28.178 26.2125 26.6686L24.5522 25.6161C23.4494 24.9172 22.0854 24.9681 21.0574 25.635C21.646 24.3984 22.0939 23.1097 22.4025 21.7934L23.9855 22.2581C25.7 22.7617 27.4982 21.7799 28.0018 20.0654L26.1156 19.5115L26.1158 19.5111Z" fill="currentColor"/>
+        </svg>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+<!-- HEADING -->
+<h1 style="
+    box-sizing: border-box;
+    display: block;
+    position: relative;
+
+ 
+    font-weight: 500;
+    font-size: 120px;
+    line-height: 108px;
+    letter-spacing: -4.2px;
+    color: rgb(255, 255, 255);
+
+    margin: 0;
+    padding: 0;
+
+    text-align: center;
+    width: 100%;
+">
+    We Create <br>
+    Category 
+   <span class="inline-img" style="height: 108px; width: 108px;">
+    <img id="hero-inline" src=""
+        style="width: 100%; height: 100%;">
+</span>
+    Leaders
+</h1>
+        
+        
+        
+        
+<p style="
+    font-family: 'Saans Medium', 'Saans-Medium', ui-sans-serif, system-ui, sans-serif;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -1.05px;
+    text-transform: ;
+    color: #fff;
+">
+    on every searchable platform
+</p>
+
+
+
+
+
+<div style="
+    width: 100%;
+    padding: 0 var(--side-padding);
+    position: absolute;
+     bottom: calc(var(--bottom-offset) + 18px);
+    left: -0.5%;
+    box-sizing: border-box;
+    
+">
+    <div style="
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+    ">
+
+
+        <!-- LEFT BLOCK -->
+   <div style="
+    max-width: var(--left-max-width);
+    line-height: var(--left-line-height);
+    font-family: 'Saans Trial', sans-serif;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    font-size: 15px;
+">
+    <span style="letter-spacing: 0.3px;">Organic media planners creating, distributing & optimising</span>
+    <span style="margin-top: var(--left-second-line-gap);">
+        <span style="font-family: 'Saans Medium', sans-serif;">search-first </span><span style="font-family: 'Saans Trial', sans-serif;">content for SEO, Social, PR, Ai and LLM search</span>
+    </span>
+</div>
+
+
+        <!-- RIGHT BLOCK -->
+        <div style="
+            text-align: right;
+            line-height: var(--right-line-height);
+            
+        ">
+            4 Global Offices serving<br>
+
+            <span style="
+                display: block;
+                margin-top: var(--right-second-line-gap);
+            ">
+                UK, USA (New York) & EU
+            </span>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+<!-- 🎛️ CONTROLS (EDIT THESE ONLY) -->
+<style>
+:root {
+
+    /* 📦 container positioning */
+    --bottom-offset: 21px;        /* distance from bottom */
+    --side-padding: clamp(12px, 2vw, 40px);
+
+    /* 🧠 left block */
+    --left-max-width: 420px;
+    --left-line-height: 1.2;
+    --left-second-line-gap: 6px;  /* spacing between lines */
+
+    /* 🧠 right block */
+    --right-line-height: 1.2;
+    --right-second-line-gap: 1px;
+
+}
+</style>
+
+
+
+<div style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 56px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+">
+
+    <div style="width:64px; aspect-ratio:20/9; display:flex; align-items:center; justify-content:center;">
+        <img src="https://github.com/NotNahid/riseatseven-clone/blob/main/Image/gogle.png?raw=true" alt="Google" style="width:100%; height:100%; object-fit:contain;">
+    </div>
+
+    <div style="width:64px; aspect-ratio:20/9; display:flex; align-items:center; justify-content:center;">
+        <img src="https://github.com/NotNahid/riseatseven-clone/blob/main/Image/chat-gpt.png?raw=true" alt="ChatGPT" style="width:100%; height:100%; object-fit:contain;">
+    </div>
+
+    <div style="width:64px; aspect-ratio:20/9; display:flex; align-items:center; justify-content:center;">
+        <img src="https://github.com/NotNahid/riseatseven-clone/blob/main/Image/gemini.png?raw=true" alt="Gemini" style="width:100%; height:100%; object-fit:contain;">
+    </div>
+
+    <div style="width:64px; aspect-ratio:20/9; display:flex; align-items:center; justify-content:center;">
+        <img src="https://github.com/NotNahid/riseatseven-clone/blob/main/Image/tiktok.png?raw=true" alt="TikTok" style="width:100%; height:100%; object-fit:contain;">
+    </div>
+
+    <div style="width:64px; aspect-ratio:20/9; display:flex; align-items:center; justify-content:center;">
+        <img src="https://github.com/NotNahid/riseatseven-clone/blob/main/Image/youtube.png?raw=true" alt="YouTube" style="width:100%; height:100%; object-fit:contain;">
+    </div>
+    <div style="width:64px; aspect-ratio:20/9; display:flex; align-items:center; justify-content:center;">
+        <img src="https://github.com/NotNahid/riseatseven-clone/blob/main/Image/pinterest.png?raw=true" alt="Pinterest" style="width:100%; height:100%; object-fit:contain;">
+    </div>
+    <div style="width:64px; aspect-ratio:20/9; display:flex; align-items:center; justify-content:center;">
+        <img src="https://github.com/NotNahid/riseatseven-clone/blob/main/Image/giphy.png?raw=true" alt="Giphy" style="width:100%; height:100%; object-fit:contain;">
+    </div>
+<div style="width:64px; aspect-ratio:20/9; display:flex; align-items:center; justify-content:center;">
+        <img src="https://github.com/NotNahid/riseatseven-clone/blob/main/Image/reddit.png?raw=true" alt="Reddit" style="width:100%; height:100%; object-fit:contain;">
+    </div>
+    
+    
+    <div style="width:64px; aspect-ratio:20/9; display:flex; align-items:center; justify-content:center;">
+        <img src="https://github.com/NotNahid/riseatseven-clone/blob/main/Image/amazon.png?raw=true" alt="Amazon" style="width:100%; height:100%; object-fit:contain;">
+    </div>
+</div>
+
+
+</section>
+
+
+
+<style>
+#comp-clients {
+    padding: 70px 25px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f2f2f2;
+    font-weight: bold;
+    font-size: 24px;
+    color: #333;
+    overflow: hidden;
+}
+
+#comp-clients span {
+    font-size: 14px;
+    font-weight: normal;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-right: 10px;
+}
+
+/* WRAPPER */
+#comp-clients .track-wrap {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* 🔥 BIG LEFT BLUR */
+#comp-clients .track-wrap::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 420px;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    mask-image: linear-gradient(
+        to right,
+        black 0%,
+        black 20%,
+        rgba(0,0,0,0.6) 45%,
+        rgba(0,0,0,0.2) 70%,
+        transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+        to right,
+        black 0%,
+        black 20%,
+        rgba(0,0,0,0.6) 45%,
+        rgba(0,0,0,0.2) 70%,
+        transparent 100%
+    );
+}
+
+/* 🔥 BIG RIGHT BLUR */
+#comp-clients .track-wrap::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 420px;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    mask-image: linear-gradient(
+        to left,
+        black 0%,
+        black 20%,
+        rgba(0,0,0,0.6) 45%,
+        rgba(0,0,0,0.2) 70%,
+        transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+        to left,
+        black 0%,
+        black 20%,
+        rgba(0,0,0,0.6) 45%,
+        rgba(0,0,0,0.2) 70%,
+        transparent 100%
+    );
+}
+
+/* 🔥 CENTER SHARP CONTROL */
+#comp-clients .track-wrap::after,
+#comp-clients .track-wrap::before {
+    backdrop-filter: blur(2px);
+}
+
+/* BASE TRACK */
+#comp-clients .track {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    width: max-content;
+    animation: scroll 18s linear infinite;
+
+    filter: blur(px);
+}
+
+#comp-clients .track:hover {
+    animation-play-state: paused;
+}
+
+#comp-clients .track div {
+    opacity: 100;
+}
+
+/* 🔥 NEW: IMAGE SUPPORT (ADDED ONLY) */
+#comp-clients .track img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    filter: grayscale(100%);
+    opacity: 0.85;
+    transition: 0.3s ease;
+}
+
+#comp-clients .track img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* ANIMATION */
+@keyframes scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+</style>
+
+<section id="comp-clients">
+    <span>The agency behind...</span>
+
+    <div class="track-wrap">
+        <div class="track">
+
+            <div>XBOX</div>
+            <div>SIXT</div>
+            <div>REVOLUTION</div>
+            <div>PlayStation</div>
+            <div>AXA</div>
+
+            <!-- 🔥 IMAGE LOGOS ADDED -->
+            <div><img src="https://github.com/NotNahid/riseatseven-clone/blob/main/Image/01J76SW385WN4X1CBJWJV7QSAP.png?raw=true"></div>
+
+            <div><img src="https://github.com/NotNahid/riseatseven-clone/blob/main/Image/red-bull-logo-black.png?raw=true"></div>
+
+            <div><img src="Untitled-design.png"></div>
+
+            <!-- duplicate -->
+            <div>XBOX</div>
+            <div>SIXT</div>
+            <div>REVOLUTION</div>
+            <div>PlayStation</div>
+            <div>AXA</div>
+
+            <!-- duplicate images -->
+            <div><img src="https://github.com/NotNahid/riseatseven-clone/blob/main/Image/01J76SW385WN4X1CBJWJV7QSAP.png?raw=true"></div>
+            <div><img src="https://github.com/NotNahid/riseatseven-clone/blob/main/Image/red-bull-logo-black.png?raw=true"></div>
+            <div><img src="Untitled-design.png"></div>
+
+        </div>
+    </div>
+</section>
+
+    <!-- ========================================= -->
+    <!-- 🧱 COMPONENT: INTRO TEXT AREA             -->
+    <!-- ========================================= -->
+    <style>
+        #comp-intro { padding: 100px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; background: #f2f2f2; }
+        #comp-intro .left-text { font-size:g 24px; line-height: 1.4; max-width: 80%; letter-spacing: -0.5px; }
+        #comp-intro .right-box h2 { font-size: 64px; line-height: 1; letter-spacing: -2px; margin-bottom: 30px; }
+        #comp-intro .inline-img-small { display: inline-block; width: 60px; height: 60px; background: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop') center/cover; border-radius: 8px; vertical-align: middle; }
+    </style>
+    <section id="comp-intro">
+        <div class="left-text">A global team of search-first content marketers engineering semantic relevancy & category signals for both the internet and people.</div>
+        <div class="right-box">
+            <h2>Driving Demand &<br>Discovery <span class="inline-img-small"></span></h2>
+            <div style="display:flex; gap:20px;">
+                <button class="global-btn-pill">Our Story ↗</button>
+                <button class="global-btn-pill" style="background:transparent; border: 1px solid #ccc;">Our Services ↗</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========================================= -->
+    <!-- 🧱 COMPONENT: FEATURED WORK               -->
+    <!-- ========================================= -->
+    <style>
+        #comp-work { background-color: #111; color: white; padding: 80px 40px; border-radius: 20px 20px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        #comp-work .sticky-list { position: sticky; top: 100px; height: fit-content; }
+        #comp-work .label { font-size: 14px; margin-bottom: 80px; font-weight: 500; }
+        #comp-work .work-item { font-size: 48px; font-weight: bold; letter-spacing: -1.5px; color: rgba(255, 255, 255, 0.3); margin-bottom: 15px; cursor: pointer; display: flex; align-items: flex-start; }
+        #comp-work .work-item.active { color: white; }
+        #comp-work .work-item span { font-size: 12px; font-weight: normal; margin-left: 10px; margin-top: 10px; }
+        #comp-work .cards-col { display: flex; flex-direction: column; gap: 20px; }
+        #comp-work .work-card { width: 100%; height: 400px; border-radius: 16px; background-size: cover; background-position: center; position: relative; }
+        #comp-work .tag { position: absolute; bottom: 20px; right: 20px; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); padding: 8px 16px; border-radius: 20px; font-size: 12px; }
+    </style>
+    <section id="comp-work">
+        <div class="sticky-list">
+            <div class="label">Featured Work</div>
+            <div class="work-item active">SIXT <span>[2023-2025]</span></div>
+            <div class="work-item">Dojo - B2B <span>[2021-2025]</span></div>
+            <div class="work-item">Magnet Trade - B2B <span>[2023-2024]</span></div>
+        </div>
+        <div class="cards-col">
+            <div class="work-card" style="background-image: url('https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2070&auto=format&fit=crop');">
+                <div class="tag">🔍 Car rental 📈</div>
+            </div>
+            <div class="work-card" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=2070&auto=format&fit=crop'); background-color: #a8f0db;">
+                <div class="tag">Payment Systems</div>
+            </div>
+        </div>
+    </section>
+
+   
+
+
+    <!-- ========================================= -->
+    <!-- 🧱 COMPONENT: SERVICES TABLE              -->
+    <!-- ========================================= -->
+    <style>
+        #comp-services { padding: 100px 40px; background: #f2f2f2; }
+        #comp-services .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 60px; }
+        #comp-services h2 { font-size: 64px; letter-spacing: -2px; }
+        #comp-services .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; }
+        #comp-services .item { font-size: 32px; font-weight: 500; padding: 30px 0; border-bottom: 1px solid #ddd; letter-spacing: -1px; }
+    </style>
+    <section id="comp-services">
+        <div class="header">
+            <h2>Our Services</h2>
+            <button class="global-btn-pill" style="border: 1px solid #ccc;">View All Services ↗</button>
+        </div>
+        <div class="grid">
+            <div class="item">Digital PR</div><div class="item">Organic Social & Content</div>
+            <div class="item">Search & Growth Strategy</div><div class="item">Content Experience</div>
+            <div class="item">Data & Insights</div><div class="item">Onsite SEO</div>
+        </div>
+    </section>
+
+
+<!-- ========================================= -->
+    <!-- 🧱 COMPONENT: HUGE TEXT SCROLL            -->
+    <!-- ========================================= -->
+    <style>
+        #comp-huge-text { font-size: 12vw; font-weight: bold; letter-spacing: -4px; white-space: nowrap; overflow: hidden; padding: 60px 0; background: #f2f2f2; border-bottom: 1px solid #ddd; }
+    </style>
+    <div id="comp-huge-text">
+Onsite SEO Chasing Consumers Not Algorithms Chasing Co</div>
+    
+    
+    
+    
+    
+    <!-- ========================================= -->
+    <!-- 🧱 COMPONENT: LEGACY STACKED CARDS        -->
+    <!-- ========================================= -->
+    <style>
+        #comp-legacy { padding: 80px 40px 140px; background: #f2f2f2; text-align: center; }
+        #comp-legacy .subtitle { font-size: 14px; font-weight: 500; margin-bottom: 60px; }
+        #comp-legacy .stack { position: relative; width: 500px; height: 500px; margin: 0 auto; }
+        #comp-legacy .card { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 20px; }
+        #comp-legacy .bg-1 { background-color: white; transform: rotate(-4deg) translate(-10px, 10px); z-index: 1; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        #comp-legacy .bg-2 { background-color: #b2f6e3; transform: rotate(6deg) translate(10px, -5px); z-index: 2; }
+        #comp-legacy .main { background-color: #000; color: white; z-index: 3; transform: rotate(-2deg); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 50px 40px; }
+        #comp-legacy .main img { width: 140px; height: 140px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; }
+        #comp-legacy h3 { font-size: 48px; letter-spacing: -1px; margin-bottom: 20px; }
+        #comp-legacy p { font-size: 12px; line-height: 1.6; color: #ccc; margin-bottom: 15px; max-width: 90%; }
+    </style>
+    <section id="comp-legacy">
+        <div class="subtitle">Legacy In The Making</div>
+        <div class="stack">
+            <div class="card bg-1"></div>
+            <div class="card bg-2"></div>
+            <div class="card main">
+                <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=150&auto=format&fit=crop" alt="Pioneer">
+                <h3>Pioneers</h3>
+                <p>We're dedicated to creating the industry narrative that others follow 3 years from now.</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- ========================================= -->
+    <!-- 🧱 COMPONENT: WHAT'S NEW                  -->
+    <!-- ========================================= -->
+    <style>
+        #comp-news { padding: 100px 40px; background: #f2f2f2; }
+        #comp-news .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 60px; }
+        #comp-news h2 { font-size: 64px; letter-spacing: -2px; }
+        #comp-news .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        #comp-news .card img.main { width: 100%; height: 300px; object-fit: cover; border-radius: 16px; margin-bottom: 20px; }
+        #comp-news .meta { font-size: 12px; color: #666; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        #comp-news .meta img { width: 24px; height: 24px; border-radius: 50%; }
+        #comp-news h3 { font-size: 20px; line-height: 1.3; letter-spacing: -0.5px; }
+    </style>
+    <section id="comp-news">
+        <div class="header">
+            <h2>What's New</h2>
+            <button class="global-btn-pill" style="border: 1px solid #ccc;">Explore More ↗</button>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <img class="main" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop" alt="News">
+                <div class="meta"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop" alt="Author"> Carrie Rose • ⏱ 2 mins</div>
+                <h3>Ryan McNamara Is Now Rise at Seven's Global Operations Director</h3>
+            </div>
+             <div class="card">
+                <img class="main" src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?q=80&w=2070&auto=format&fit=crop" alt="News">
+                <div class="meta"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=150&auto=format&fit=crop" alt="Author"> Ray Saddiq • ⏱ 2 mins</div>
+                <h3>Rise at Seven Appointed by Coneys for Retail Growth</h3>
+            </div>
+             <div class="card">
+                <img class="main" src="https://images.unsplash.com/photo-1582293041079-7814c2f12063?q=80&w=2070&auto=format&fit=crop" alt="News">
+                <div class="meta"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop" alt="Author"> Carrie Rose • ⏱ 2 mins</div>
+                <h3>Rise at Seven Appointed by Langtins</h3>
+            </div>
+        </div>
+    </section>
+
+ <!-- ========================================= -->
+    <!-- 🧱 COMPONENT: HUGE TEXT SCROLL            -->
+    <!-- ========================================= -->
+    <style>
+        #comp-huge-text { font-size: 12vw; font-weight: bold; letter-spacing: -4px; white-space: nowrap; overflow: hidden; padding: 60px 0; background: #f2f2f2; border-bottom: 1px solid #ddd; }
+    </style>
+    <div id="comp-huge-text">Ready to Rise at</div>
+    
+    
+    
+    <!-- ========================================= -->
+    <!-- 🧱 COMPONENT: FOOTER                      -->
+    <!-- ========================================= -->
+    <style>
+        #comp-footer-wrap { padding: 0 10px 10px; background: #f2f2f2; }
+        #comp-footer { background-color: #111; color: white; border-radius: 24px; padding: 60px 40px 30px; }
+        #comp-footer .top-row { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 100px; }
+        #comp-footer h4 { font-size: 24px; letter-spacing: -0.5px; margin-bottom: 20px; font-weight: 500; }
+        #comp-footer .input-group { display: flex; background-color: #222; border-radius: 30px; padding: 6px; margin-bottom: 20px; max-width: 350px; }
+        #comp-footer .input-group input { background: transparent; border: none; color: white; padding: 10px 20px; width: 100%; outline: none; font-size: 14px; }
+        #comp-footer .input-group button { background-color: #bbf7d0; color: #111; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-weight: bold; }
+        #comp-footer .socials { display: flex; gap: 8px; }
+        #comp-footer .social-pill { background-color: white; color: black; font-size: 10px; font-weight: bold; padding: 6px 12px; border-radius: 12px; cursor: pointer; }
+        #comp-footer ul { list-style: none; }
+        #comp-footer li { margin-bottom: 12px; font-size: 14px; color: #ddd; cursor: pointer; }
+        #comp-footer .brand-text { font-size: 15vw; font-weight: bold; letter-spacing: -4px; line-height: 0.8; margin-bottom: 40px; }
+        #comp-footer .bottom-row { display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 10px; color: #888; }
+    </style>
+    <div id="comp-footer-wrap">
+        <footer id="comp-footer">
+            <div class="top-row">
+                <div>
+                    <h4>Stay updated with Rise news</h4>
+                    <div class="input-group"><input type="email" placeholder="Your Email Address"><button>↗</button></div>
+                    <div class="socials"><span class="social-pill">f ↗</span><span class="social-pill">X ↗</span><span class="social-pill">in ↗</span></div>
+                </div>
+                <ul><li>Services</li><li>Work</li><li>About</li></ul>
+                <ul><li>Testimonials</li><li>Blog</li><li>Webinars</li></ul>
+                <ul><li>Sheffield</li><li>Manchester</li><li>London</li></ul>
+            </div>
+            <div class="brand-text">Rise at Seven <sup>®</sup></div>
+            <div class="bottom-row">
+                <div>© 2025 Rise at Seven Ltd • Privacy Policy • Terms</div>
+                <div>Website MadeByShape</div>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
+
+
